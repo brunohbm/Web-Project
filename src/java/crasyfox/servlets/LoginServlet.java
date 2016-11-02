@@ -32,7 +32,7 @@ public class LoginServlet extends HttpServlet {
             if(LoginContr.getType().equals("ADMIN")){
                 response.sendRedirect("tools/mainAdmin.jsp");
             }else{
-                response.sendRedirect("tools/confirmPay.jsp");
+                response.sendRedirect("tools/main.jsp");
             }
         } else {
             test = true;

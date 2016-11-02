@@ -1,25 +1,22 @@
 <%-- 
-Document   : main
-Created on : 12/10/2016, 12:26:46
-Author     : CrasyFox
+    Document   : alter
+    Created on : 01/11/2016, 18:46h
+    Author     : CrasyFox
 --%>
 <%@page import="crasyfox.control.ItemControl"%>
+<%@page import="javax.swing.text.html.HTML.Tag"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="crasyfox.control.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>   
+<html>
     <head>                
         <link rel="shortcut icon" href="../tools/img/icon.png" type="image/png">
-        <title>I-Commerce Home</title>
+        <title>ADM Alter</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <script type="text/javascript" src="js/lib/jquery-3.1.1.min.js"></script>
         <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
-
-        <script type="text/javascript">
-        </script>
-
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/reset.css">
@@ -51,41 +48,26 @@ Author     : CrasyFox
             }
         </style>
     </head> 
-    <body>
-        <div class="container-fluid" style="background-color:#F44336;color:#fff;height:200px;">
-            <img src="img/mainPageIcon.png" style="margin-right: 45px;  "> <text style="font-size: 40px" >I.M.T.W Games Shop</text>
-        </div>
+    <body>           
         <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
             <ul class="nav navbar-nav">
-                <li><a href="cart.jsp"><img src="img/productsIcon.png" id="iconPage">Shopping Cart</a></li>                                    
+                <li><a href="mainAdmin.jsp">List Products</a></li>                    
             </ul>                
         </nav>
-        <div class="container" style="height:1000px">            
-            <table class="table table-bordered" style="background-color: white">
-                <thead>
-                    <tr style="background-color:  gray">
-                        <th>Name</th>
-                        <th>Description</th>
-                        <th>Value</th>                                                        
-                        <th></th>                                                      
-                    </tr>                         
-                </thead>
-                <tbody>                   
+        <div class="container" style="height:1000px">                                     
+            <form class="form-signin" action="../AlterServlet" method="POST">
+                <div class="input-group input-group-lg">                            
                     <%
-                        ItemControl ic = new ItemControl();
-                        ArrayList<Item> items = ic.returnItems();
-                        for (Item item : items) {
+                   ItemControl ic = new ItemControl();                    
+                   Item item = ic.returnItem(Integer.parseInt(request.getParameter("id")));                    
                     %>
-                    <tr>
-                        <td><%=item.name%></td>
-                        <td><%=item.description%></td>
-                        <td><%=item.value%></td>                
-                        <td> <a class="btn btn-warning" href="../SessionServlet?id=<%=item.id%>">Add</a></td>
-                    </tr>
-                    <% }%>
-                </tbody>
-            </table>
+                    <input name="id" type="hidden" value="<%=item.id%>">                            
+                    <input name="name" value="<%=item.name%>" type="text" class="form-control" placeholder="Name"  aria-describedby="sizing-addon1">                            
+                    <input name="description" value="<%=item.description%>" type="text" class="form-control" placeholder="Description" aria-describedby="sizing-addon1">    
+                    <input name="value" type="text" value="<%=item.value%>" class="form-control" placeholder="Value"  aria-describedby="sizing-addon1">                                
+                    <button class="btn btn-lg btn-danger btn-block" type="submit">Alter</button>
+                </div>                          
+            </form>            
         </div>
     </body>
 </html>
-

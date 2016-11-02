@@ -6,7 +6,7 @@
 
 <%@page import="java.util.ArrayList"%>
 <%@page import="crasyfox.control.Item"%>
-<%@page import="crasyfox.control.CartControl"%>
+<%@page import="crasyfox.control.ItemControl"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
     <html>
@@ -18,10 +18,7 @@
             <script type="text/javascript" src="js/lib/jquery-3.1.1.min.js"></script>
             <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
             
-            <script type="text/javascript">
-                function addProduct(id){
-                    
-                }
+            <script type="text/javascript">              
             </script>
                 
 
@@ -60,11 +57,12 @@
                 <img src="img/mainPageIcon.png" style="margin-right: 45px;  "> <text style="font-size: 40px" >I.M.T.W Games Shop</text>
             </div>
             <nav class="navbar navbar-inverse" data-spy="affix" data-offset-top="197">
-                <ul class="nav navbar-nav">                    
+                <ul class="nav navbar-nav">       
+                    <li><a href="main.jsp"><img src="img/homeIcon.png" id="iconPage">Home</a></li>  
                 </ul>                
             </nav>
             <div class="container" style="height:1000px">                                     
-            
+                <h1 class="col-sm-push-12">Purchase made with sucsses</h1>
             </div>
         </body>
     </html>

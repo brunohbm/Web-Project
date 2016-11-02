@@ -35,7 +35,7 @@ public class Order {
     public double sumTotal(){
         total = 0;
         for(Item item : items){
-         total += item.value;
+         total += (item.value * item.amount);
         }
         return total;
     }

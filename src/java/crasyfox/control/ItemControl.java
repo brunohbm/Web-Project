@@ -15,6 +15,18 @@ import java.util.ArrayList;
  */
 public class ItemControl extends ConnectionMySQL {
 
+    public void end(Order order, String user){
+         try {
+            int idOrder = Integer.parseInt(autoIncrement("ID_ORDER", "ORDERS"));
+             includeSQL("INSERT INTO ORDERS VALUES ("+idOrder+", '"+user+"')");
+             for(Item item : order.getItems()){
+                 includeSQL("INSERT INTO ITEM_ORDER VALUES ("+item.id+", "+idOrder+", "+item.amount+", "+item.value+")");
+             }
+        } catch (Exception e) {
+        }
+         
+    }
+    
     public ArrayList<Item> returnItems() {
         ArrayList<Item> items = new ArrayList();
         try {
@@ -35,7 +47,7 @@ public class ItemControl extends ConnectionMySQL {
 
     public Item returnItem(int cod) {
         try {
-            runSQL("SELECT * FROM ITEM WHERE ID = " + cod);
+            runSQL("SELECT * FROM ITEM WHERE ID_ITEM = " + cod);
 
             resultSet.first();
             int id = resultSet.getInt("ID_ITEM");
@@ -49,6 +61,10 @@ public class ItemControl extends ConnectionMySQL {
     }
     
     public void updateItem(Item item){
-        updateSQL("UPDATE ITEM SET NM_ITEM = " + item.name + ", DS_ITEM = '"+ item.description +"', VL_ITEM = " + item.value + " WHERE ID_TEM = "+ item.id);
+        updateSQL("UPDATE ITEM SET NM_ITEM = '" + item.name + "', DS_ITEM = '"+ item.description +"', VL_ITEM = " + item.value + " WHERE ID_ITEM = "+ item.id);
+    }
+    
+       public void deleteItem(String id){
+           deleteSQL("DELETE FROM ITEM WHERE ID_ITEM = "+id);
     }
 }

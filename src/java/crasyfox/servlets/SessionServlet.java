@@ -6,6 +6,7 @@
 package crasyfox.servlets;
 
 import crasyfox.control.Item;
+import crasyfox.control.ItemControl;
 import crasyfox.control.Order;
 import java.io.IOException;
 import javax.servlet.ServletException;
@@ -19,31 +20,40 @@ import javax.servlet.http.HttpSession;
  * @author CrasyFox
  */
 public class SessionServlet extends HttpServlet {
-    
-    @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        HttpSession session = request.getSession();
-        if(session.getAttribute("order") == null){
-            session.setAttribute("order", new Order());
-        }
-        
-        Order order = (Order) session.getAttribute("order");
-        
-        boolean test = false;
-        
-        for (Item item : order.getItems()){
-//            if(item.id = ){
-//                test = true;
-//            }
-        }
-        if(test){
-            
-        }
-    }
 
     @Override
-    public String getServletInfo() {
-        return "Short description";
-    }
+    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+
+        HttpSession session = request.getSession();
+        ItemControl ic = new ItemControl();
+        int id = Integer.parseInt(request.getParameter("id"));
+        boolean test = true;
+        int cont = 0;        
+
+        if (session.getAttribute("order") == null) {
+            session.setAttribute("order", new Order());
+        }
+
+        Order order = (Order) session.getAttribute("order");
+
+        if (order.getItems() != null) {
+            for (Item item : order.getItems()) {
+                if (item.id == id) {
+                    test = false;
+                    order.getItems().get(cont).amount += 1;                                        
+                }
+                cont += 1;
+            }
+
+        }
+        if (test) {
+            Item item = ic.returnItem(id);
+            item.amount = 1;
+            order.addItem(item);            
+        }
+
+        session.setAttribute("order", order);        
+        response.sendRedirect("tools/main.jsp");
+    }   
 }

@@ -83,8 +83,8 @@ public class ConnectionMySQL {
             statement = connect.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE, ResultSet.CONCUR_READ_ONLY);
             statement.execute(comSQL);
         } catch (SQLException sqlEx) {
+                        System.out.println(comSQL);
             JOptionPane.showMessageDialog(null, "it was not possible deleteing" + sqlEx);
-            System.out.println(comSQL);
         }
     }
 

@@ -1,7 +1,6 @@
 package crasyfox.control;
 
 import crasyfox.connection.ConnectionMySQL;
-import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
@@ -47,9 +46,7 @@ public class LoginController extends ConnectionMySQL {
                 userBD = resultSet.getString("USERNAME");
                 passwordBD = resultSet.getString("PASSWORD");
                 setType(resultSet.getString("TYPE"));
-            }
-
-            connection.quitBank();
+            }            
                         
             return ((userBD != null) && (passwordBD != null));
         } catch (SQLException e) {

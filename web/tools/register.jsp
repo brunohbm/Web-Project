@@ -3,6 +3,7 @@
     Created on : 22/10/2016, 23:22:25
     Author     : CrasyFox
 --%>
+<%@page import="javax.swing.text.html.HTML.Tag"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="crasyfox.control.Item"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
@@ -14,11 +15,7 @@
             <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
             <script type="text/javascript" src="js/lib/jquery-3.1.1.min.js"></script>
-            <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
-            
-            <script type="text/javascript">              
-            </script>
-                
+            <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>                
 
             <link rel="stylesheet" href="css/bootstrap.min.css">
             <link rel="stylesheet" href="css/reset.css">
@@ -57,14 +54,14 @@
                 </ul>                
             </nav>
             <div class="container" style="height:1000px">                                     
-                <form class="form-signin" action="../RegisterServlet" method="POST">
+                <form name="formItem" class="form-signin" action="../RegisterServlet" method="POST">
                         <div class="input-group input-group-lg">                            
                             <input type="text" class="form-control" placeholder="Name" name="name" aria-describedby="sizing-addon1">                            
                             <input type="text" class="form-control" placeholder="Description" name="description" aria-describedby="sizing-addon1">    
                             <input type="text" class="form-control" placeholder="Value" name="value" aria-describedby="sizing-addon1">                                
                             <button class="btn btn-lg btn-danger btn-block" type="submit">Register</button>
                         </div>                          
-                    </form>
+                    </form>                
             </div>
         </body>
     </html>

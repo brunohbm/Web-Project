@@ -18,7 +18,7 @@
             <script type="text/javascript" src="js/lib/jquery-3.1.1.min.js"></script>
             <script type="text/javascript" src="js/lib/bootstrap.min.js"></script>
             
-            <script type="text/javascript">               
+            <script type="text/javascript">                  
             </script>
                 
             <link rel="stylesheet" href="css/bootstrap.min.css">
@@ -65,21 +65,23 @@
                             <th>Description</th>
                             <th>Value</th>                                                        
                             <th></th>                                                      
+                            <th></th>      
                         </tr>                         
                    </thead>
-                   <tbody>
+                   <tbody>                   
                        <%
-                            ItemControl ic = new ItemControl();
-                            ArrayList<Item> items = ic.returnItems();                        
-                            for (Item item : items) {
-                                out.print("<tr>");
-                                out.print("<th>"+item.name+"</th>");
-                                out.print("<th>"+item.description+"</th>");
-                                out.print("<th>"+item.value+"</th>");
-                                out.print("<th><button>Delete</button><button>Alter</button></th>");
-                                out.print("</tr>");
-                        }
+                        ItemControl ic = new ItemControl();
+                        ArrayList<Item> items = ic.returnItems();
+                        for (Item item : items) {
                     %>
+                    <tr>
+                        <td><%=item.name%></td>
+                        <td><%=item.description%></td>
+                        <td><%=item.value%></td>                
+                        <td> <a class="btn btn-danger" href="../ControllerAdminProductsServlet?id=<%=item.id%>">Delete</a></td>
+                        <td> <a class="btn btn-warning" href="../tools/alter.jsp?id=<%=item.id%>">Alter</a></td>
+                    </tr>
+                    <% }%>
                    </tbody>
                 </table>
             </div>
