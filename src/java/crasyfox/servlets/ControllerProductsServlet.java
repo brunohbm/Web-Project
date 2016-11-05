@@ -27,7 +27,7 @@ public class ControllerProductsServlet extends HttpServlet {
         ItemControl ic = new ItemControl();
         Order order = (Order) request.getSession().getAttribute("order");
         Cookie[] cookie = request.getCookies();       
-        String user = cookie[0].getValue();
+        String user = cookie[1].getValue();
         ic.end(order, user);
         request.getSession().removeAttribute("order");
         response.sendRedirect("tools/confirmPay.jsp");

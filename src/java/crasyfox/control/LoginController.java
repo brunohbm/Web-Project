@@ -32,7 +32,10 @@ public class LoginController extends ConnectionMySQL {
     
     public  Boolean isLogin(HttpServletRequest request, String type){
         Cookie[] cookies = request.getCookies();
-        return (cookies[0].getName().equals("user") && cookies[1].getName().equals("password") && cookies[2].getValue().equalsIgnoreCase(type));
+        String user = cookies[1].getName();
+        String password = cookies[2].getName();
+        String cookieType = (String) cookies[3].getValue();
+        return (user.equals("user") && password.equals("password") && cookieType.equalsIgnoreCase(type));
     }
     
     public  Boolean exist(String user, String password) {

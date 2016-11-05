@@ -14,8 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 public class LoginServlet extends HttpServlet {
 
     public static boolean test = false;
-
-    @Override
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
@@ -32,7 +31,7 @@ public class LoginServlet extends HttpServlet {
             if(LoginContr.getType().equals("ADMIN")){
                 response.sendRedirect("tools/mainAdmin.jsp");
             }else{
-                response.sendRedirect("tools/main.jsp");
+                response.sendRedirect("http://localhost:8080/TrabalhoWeb/ControllerProductsServlet");
             }
         } else {
             test = true;
